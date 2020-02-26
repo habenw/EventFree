@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -40,6 +43,31 @@ public class User {
 	    private Date updatedAt;
 	    @OneToMany(mappedBy="creator", fetch = FetchType.LAZY)
 	    private List<Event> created_events;
+	    
+	    @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	    name = "events_attendees", 
+	    joinColumns = @JoinColumn(name = "user_id"), 
+	    inverseJoinColumns = @JoinColumn(name = "event_id")
+	    )
+	    private List<Event> events_attending;
+	    
+	    @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	    name = "friendships", 
+	    joinColumns = @JoinColumn(name = "user_id"), 
+	    inverseJoinColumns = @JoinColumn(name = "friend_id")
+	    )
+	    private List<User> friends;
+	    
+	    @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	    name = "friendships", 
+	    joinColumns = @JoinColumn(name = "friend_id"), 
+	    inverseJoinColumns = @JoinColumn(name = "user_id")
+	    )
+	    private List<User> userFriends;
+	    
 	
 	    public User() {
 	    }
@@ -55,6 +83,30 @@ public class User {
 			this.password = password;
 			this.duplicate = duplicate;
 			this.passwordConfirmation = passwordConfirmation;
+		}
+
+		public List<Event> getEvents_attending() {
+			return events_attending;
+		}
+
+		public void setEvents_attending(List<Event> events_attending) {
+			this.events_attending = events_attending;
+		}
+
+		public List<User> getFriends() {
+			return friends;
+		}
+
+		public void setFriends(List<User> friends) {
+			this.friends = friends;
+		}
+
+		public List<User> getUserFriends() {
+			return userFriends;
+		}
+
+		public void setUserFriends(List<User> userFriends) {
+			this.userFriends = userFriends;
 		}
 
 		public Long getId() {
