@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.stereotype.Service;
 
 import com.codingdojo.EventFree.models.Event;
 import com.codingdojo.EventFree.models.User;
 import com.codingdojo.EventFree.repositories.EventRepository;
 import com.codingdojo.EventFree.repositories.UserRepository;
 
-
+@Service
 public class MainService {
 	private final UserRepository userRepository;
     private final EventRepository eventRepository;

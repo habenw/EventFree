@@ -1,0 +1,11 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    background-image: linear-gradient(rgb(99, 178, 228),rgb(1, 26, 41));
+    width: 1625px;
+    height: 700px;
+    margin: 0px 0px 0px 15px;
+    padding: 0px 0px 0x 0px;
+}

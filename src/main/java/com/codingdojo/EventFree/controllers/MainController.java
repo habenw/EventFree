@@ -19,7 +19,7 @@ import com.codingdojo.EventFree.models.Event;
 import com.codingdojo.EventFree.models.User;
 import com.codingdojo.EventFree.services.MainService;
 import com.codingdojo.EventFree.validators.UserValidator;
-
+	
 @Controller
 public class MainController {
 
@@ -32,13 +32,13 @@ public class MainController {
 	}
 	@GetMapping("/")
 	public String index(@ModelAttribute("user") User user) {
-		return "index.jsp";
+		return "loginReg.jsp";
 	}
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		userValid.validate(user, result);
 		if(result.hasErrors()) {
-			return "index.jsp";
+			return "loginReg.jsp";
 		} else {
 			User newUser=mainServ.registerUser(user);
 			session.setAttribute("user_id", newUser.getId());
