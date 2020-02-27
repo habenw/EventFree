@@ -25,7 +25,12 @@ public class MainService {
 	public List<Event> allEvents() {
 		return eventRepository.findAll();
 	}
-	
+	public List<Event> findMyEvents(User user) {
+		return eventRepository.findByUsersContaining(user);
+	}
+	public List<Event> findOtherEvents(User user) {
+		return eventRepository.findByUsersNotContaining(user);
+	}
     public User registerUser(User user) {
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashed);
