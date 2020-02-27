@@ -52,7 +52,7 @@ public class MainController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
 		if(!mainServ.authenticateUser(email, password)) {
-			model.addAttribute("invalid", "Your credentials are invalid.");
+			model.addAttribute("invalid", "Your credentials are not valid.");
 			return "index.jsp";
 		} else {
 			User thisUser = mainServ.findByEmail(email);
