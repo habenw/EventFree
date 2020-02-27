@@ -37,7 +37,7 @@ public class MainController {
 		} else {
 			User newUser=mainServ.registerUser(user);
 			session.setAttribute("user_id", newUser.getId());
-			return "redirect:/ideas";
+			return "redirect:/events";
 		}
 	}
 	@GetMapping("/login")
@@ -52,7 +52,7 @@ public class MainController {
 		} else {
 			User thisUser = mainServ.findByEmail(email);
 			session.setAttribute("user_id", thisUser.getId());
-			return "redirect:/ideas";
+			return "redirect:/events";
 		}
 	}
 }
