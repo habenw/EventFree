@@ -52,7 +52,7 @@ public class MainController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
 		if(!mainServ.authenticateUser(email, password)) {
-			model.addAttribute("invalid", "Your credentials are invalid.");
+			model.addAttribute("invalid", "Your credentials are not valid.");
 			return "index.jsp";
 		} else {
 			User thisUser = mainServ.findByEmail(email);
@@ -67,14 +67,46 @@ public class MainController {
 		} else {
 			Long userId = (Long) session.getAttribute("user_id");
 			User user = mainServ.findUserById(userId);
-			List<Event> events = mainServ.allEvents();
+			List<Event> events = mainServ.findMyEvents(user);
 			model.addAttribute("user", user);
-			model.addAttribute("allEvents", events);
+			model.addAttribute("allMyEvents", events);
 			return "events.jsp";
 		}
 	}
+	@PutMapping("/attend")
+	public String attendEvent(@PathVariable("id") Long userId, @RequestParam("events") Long eventId) {
+		User user = mainServ.findUserById(userId);
+		Event event = mainServ.findEvent(eventId);
+		event.getAttendees().add(user);
+		mainServ.createEvent(event);
+		return "redirect:/events";
+	}
+	@PutMapping("/leave")
+	public String leaveEvent(@PathVariable("id") Long userId, @RequestParam("events") Long eventId) {
+		User user = mainServ.findUserById(userId);
+		Event event = mainServ.findEvent(eventId);
+		event.getAttendees().remove(user);
+		mainServ.createEvent(event);
+		return "redirect:/events";
+	}
+	@PutMapping("/attend/{id}")
+	public String attendThisEvent(@PathVariable("id") Long userId, @RequestParam("events") Long eventId) {
+		User user = mainServ.findUserById(userId);
+		Event event = mainServ.findEvent(eventId);
+		event.getAttendees().add(user);
+		mainServ.createEvent(event);
+		return "redirect:/events/{id}";
+	}
+	@PutMapping("/leave/{id}")
+	public String leaveThisEvent(@PathVariable("id") Long userId, @RequestParam("events") Long eventId) {
+		User user = mainServ.findUserById(userId);
+		Event event = mainServ.findEvent(eventId);
+		event.getAttendees().remove(user);
+		mainServ.createEvent(event);
+		return "redirect:/events/{id}";
+	}
 	@GetMapping("/events/new")
-	public String newevent(@ModelAttribute("event") Event event, Model model, HttpSession session) {
+	public String newEvent(@ModelAttribute("event") Event event, Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
 			return "redirect:/login";
 		} else {
@@ -94,7 +126,7 @@ public class MainController {
 		}
 	}
 	@GetMapping("events/{event.id}")
-	public String showevent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
+	public String showEvent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
 		Event thisEvent = mainServ.findEvent(id);
 		model.addAttribute("event", thisEvent);
 		return "show.jsp";
@@ -120,7 +152,7 @@ public class MainController {
 		}
 	}
 	@PutMapping("events/{id}/edit")
-	public String updateevent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
+	public String updateEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			return "edit.jsp";
 		} else {

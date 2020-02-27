@@ -26,7 +26,12 @@ public class MainService {
 	public List<Event> allEvents() {
 		return eventRepository.findAll();
 	}
-	
+	public List<Event> findMyEvents(User user) {
+		return eventRepository.findByUsersContaining(user);
+	}
+	public List<Event> findOtherEvents(User user) {
+		return eventRepository.findByUsersNotContaining(user);
+	}
     public User registerUser(User user) {
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashed);
@@ -43,10 +48,10 @@ public class MainService {
     	return true;
     }
    public User findUserById(Long id) {
-    	Optional<User> u = userRepository.findById(id);
+    	Optional<User> user = userRepository.findById(id);
     	
-    	if(u.isPresent()) {
-            return u.get();
+    	if(user.isPresent()) {
+            return user.get();
     	} else {
     	    return null;
     	}
