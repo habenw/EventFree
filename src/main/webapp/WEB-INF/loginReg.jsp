@@ -20,9 +20,11 @@
 			<h3>Registration</h3>
 			<form:form action="/register" method="post" modelAttribute="user">
 				<p>
-					Name:
-					<form:input path="name" />
-					<form:errors path="name" />
+					Your Name:
+					<form:input path="firstName" />
+					<form:errors path="firstName" />
+					<form:input path="lastName" />
+					<form:errors path="lastName" />
 				</p>
 				<p>
 					Email
@@ -37,8 +39,8 @@
 				</p>
 				<p>
 					Password Confirmation.:
-					<form:input type="password" path="passwordConf" />
-					<form:errors path="passwordConf" />
+					<form:input type="password" path="passwordConfirmation" />
+					<form:errors path="passwordConfirmation" />
 				</p>
 				<button type="submit" class="btn btn-success btn-block">Register</button>
 			</form:form>

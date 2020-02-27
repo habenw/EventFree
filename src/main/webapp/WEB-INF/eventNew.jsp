@@ -8,22 +8,22 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <meta charset="UTF-8">
-<title>GREAT IDEAS ARE BORN HERE</title>
+<title>EVENTS ARE BORN HERE</title>
 </head>
 <body>
- 	<h1>GREAT IDEAS ARE BORN HERE!!!</h1>
- 	<a href="/dashboard" class="btn btn-primary">Cancel</a>
+ 	<h1>EVENTS ARE BORN HERE!!!</h1>
+ 	<a href="/events" class="btn btn-primary">Cancel</a>
 	<div class="container">
-		<form:form action="/ideaNew" method="post" modelAttribute="new">
+		<form:form action="/events/new" method="post" modelAttribute="new">
 			<p>
 				New Idea Title:
-				<form:input path="ideaName" />
-				<form:errors path="ideaName" />
+				<form:input path="newEvent" />
+				<form:errors path="newEvent" />
 			</p>
 			<p>
 				Idea Details (explain):
-				<form:input path="ideaDetail" />
-				<form:errors path="ideaDetail" />
+				<form:input path="description" />
+				<form:errors path="description" />
 			</p>
 			<form:input type="hidden" path="user" value="${user.id }" />
 			<br>

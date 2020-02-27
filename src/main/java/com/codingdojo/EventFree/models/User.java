@@ -15,7 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -27,19 +31,26 @@ public class User {
 	    private Long id;
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
 	 	private String FirstName;
+	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
 	 	private String LastName;
 	 	private int Birthday;
-	    @Size(min=2,max=20)
-	    private String email;
-	    private String password;
+	 	@Email(message = "EMAIL FORMATS PLEASE")
+		@NotBlank(message = "Please Enter A Valid Email")
+	 	private String email;
+		@Size(min = 8, message = "PW Needs to be 8 Char. Min.")
+	 	private String password;
 	    
 	    @Transient
 	    private boolean duplicate;
 	    
+		@NotBlank(message = "Please Confirm Password")
 	    @Transient
 	    private String passwordConfirmation;
 	    @Column(updatable=false)
+	    @DateTimeFormat(pattern="yyyy-MM-dd")
 	    private Date createdAt;
+	    @Column(updatable=true)
+	    @DateTimeFormat(pattern="yyyy-MM-dd")
 	    private Date updatedAt;
 	    @OneToMany(mappedBy="creator", fetch = FetchType.LAZY)
 	    private List<Event> created_events;
