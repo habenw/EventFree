@@ -1,5 +1,6 @@
 package com.codingdojo.EventFree.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -18,14 +19,18 @@ public class MainService {
         this.userRepository = userRepository;
         this.eventRepository=eventRepository;
     }
-
+	public List<User> allUsers() {
+		return userRepository.findAll();
+	}
+	public List<Event> allEvents() {
+		return eventRepository.findAll();
+	}
+	
     public User registerUser(User user) {
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashed);
         return userRepository.save(user);
     }
-    
-  
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
