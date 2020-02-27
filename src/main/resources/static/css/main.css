@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.logRegPg{
+    background-image: linear-gradient(rgb(99, 178, 228),rgb(1, 26, 41));
+    width: 100%;
+    height: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0x 0px;
+}
+.dashPage{
+    background-image: linear-gradient(rgb(99, 718, 228),rgb(333, 226, 41));
+    width: 1200px;
+    height: auto;
+    margin: 10px 40px 0px 40px;
+    padding: 0px 0px 0x 10px;
+}
+.regContainer, .loginContainer{
+  margin: auto;
+  width: 35%;
+  border: 3px solid green;
+  padding: 10px;
+}
+.indexBtn{
+  margin: auto;
+  width: 35%;
+  border: 3px solid black;
+  padding: 10px;
+}
