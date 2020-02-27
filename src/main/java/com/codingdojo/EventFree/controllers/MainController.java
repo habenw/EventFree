@@ -67,10 +67,36 @@ public class MainController {
 		} else {
 			Long userId = (Long) session.getAttribute("user_id");
 			User user = mainServ.findUserById(userId);
-			List<Event> events = mainServ.findMyEvents(user);
+			List<Event> events = user.getCreated_events();
 			model.addAttribute("user", user);
 			model.addAttribute("allMyEvents", events);
 			return "events.jsp";
+		}
+	}
+	@GetMapping("/friends")
+	public String friends(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			List<User> friends = user.getFriends();
+			model.addAttribute("user", user);
+			model.addAttribute("friends", friends);
+			return "friends.jsp";
+		}
+	}
+	@GetMapping("/otherevents")
+	public String otherEvents(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			List<User> events = mainServ.findOtherEvents(user);
+			model.addAttribute("user", user);
+			model.addAttribute("allOtherEvents", events);
+			return "otherevents.jsp";
 		}
 	}
 	@PutMapping("/attend")
@@ -116,7 +142,7 @@ public class MainController {
 			return "new.jsp";
 		}
 	}
-	@PostMapping("events/new")
+	@PostMapping("/events/new")
 	public String makeNewEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpSession session) { 
 		if(result.hasErrors()) {
 			return "redirect:/events/new";
@@ -125,13 +151,13 @@ public class MainController {
 			return "redirect:/events/"+event.getId();
 		}
 	}
-	@GetMapping("events/{event.id}")
+	@GetMapping("/events/{event.id}")
 	public String showEvent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
 		Event thisEvent = mainServ.findEvent(id);
 		model.addAttribute("event", thisEvent);
 		return "show.jsp";
 	}
-	@GetMapping("events/{id}/edit")
+	@GetMapping("/events/{id}/edit")
 	public String editevent(@PathVariable("id") Long id, Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
 			return "redirect:/login";
@@ -151,7 +177,7 @@ public class MainController {
 			}
 		}
 	}
-	@PutMapping("events/{id}/edit")
+	@PutMapping("/events/{id}/edit")
 	public String updateEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			return "edit.jsp";
