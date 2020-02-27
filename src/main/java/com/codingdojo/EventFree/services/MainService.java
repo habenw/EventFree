@@ -18,7 +18,7 @@ public class MainService {
     
     public MainService(UserRepository userRepository,EventRepository eventRepository) {
         this.userRepository = userRepository;
-        this.eventRepository=eventRepository;
+        this.eventRepository = eventRepository;
     }
 	public List<User> allUsers() {
 		return userRepository.findAll();

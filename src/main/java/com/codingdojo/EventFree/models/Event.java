@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="events")
@@ -21,8 +22,11 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
+	@Size(min = 2, max = 75, message = "Please enter a valid Event Name (min. 2 characters)")
 	 private String Name;
+	@Size(min = 4, max = 75, message = "Please enter a valid Location (min. 4 characters)")
 	 private String Location;
+	@Size(min = 4, max = 75, message = "Please enter a valid Description (min. 4 characters)")
 	 private String Description;
 	 @Column(updatable=false)
 	 private Date createdAt;

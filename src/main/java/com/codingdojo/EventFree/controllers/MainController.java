@@ -116,7 +116,7 @@ public class MainController {
 			return "new.jsp";
 		}
 	}
-	@PostMapping("events/new")
+	@PostMapping("/events/new")
 	public String makeNewEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpSession session) { 
 		if(result.hasErrors()) {
 			return "redirect:/events/new";
@@ -125,13 +125,13 @@ public class MainController {
 			return "redirect:/events/"+event.getId();
 		}
 	}
-	@GetMapping("events/{event.id}")
+	@GetMapping("/events/{event.id}")
 	public String showEvent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
 		Event thisEvent = mainServ.findEvent(id);
 		model.addAttribute("event", thisEvent);
 		return "show.jsp";
 	}
-	@GetMapping("events/{id}/edit")
+	@GetMapping("/events/{id}/edit")
 	public String editevent(@PathVariable("id") Long id, Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
 			return "redirect:/login";
@@ -151,7 +151,7 @@ public class MainController {
 			}
 		}
 	}
-	@PutMapping("events/{id}/edit")
+	@PutMapping("/events/{id}/edit")
 	public String updateEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			return "edit.jsp";
