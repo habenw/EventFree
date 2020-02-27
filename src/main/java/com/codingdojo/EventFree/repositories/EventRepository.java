@@ -11,7 +11,6 @@ import com.codingdojo.EventFree.models.User;
 @Repository
 public interface EventRepository extends CrudRepository<Event,Long>{
 	List<Event>findAll();
-	List<Event>findByUsersContaining(User user);
-	List<Event>findByUsersNotContaining(User user);
-	List<Event>findEventsByUsersNotContaining(User creator);
+	List<User>findByAttendeesNotContaining(User user);
+	List<User>findEventsByAttendeesNotContaining(User creator);
 }

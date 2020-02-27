@@ -67,10 +67,36 @@ public class MainController {
 		} else {
 			Long userId = (Long) session.getAttribute("user_id");
 			User user = mainServ.findUserById(userId);
-			List<Event> events = mainServ.findMyEvents(user);
+			List<Event> events = user.getCreated_events();
 			model.addAttribute("user", user);
 			model.addAttribute("allMyEvents", events);
 			return "events.jsp";
+		}
+	}
+	@GetMapping("/friends")
+	public String friends(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			List<User> friends = user.getFriends();
+			model.addAttribute("user", user);
+			model.addAttribute("friends", friends);
+			return "friends.jsp";
+		}
+	}
+	@GetMapping("/otherevents")
+	public String otherEvents(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			List<User> events = mainServ.findOtherEvents(user);
+			model.addAttribute("user", user);
+			model.addAttribute("allOtherEvents", events);
+			return "otherevents.jsp";
 		}
 	}
 	@PutMapping("/attend")
