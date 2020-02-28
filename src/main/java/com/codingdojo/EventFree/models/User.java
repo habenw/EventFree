@@ -35,7 +35,7 @@ public class User {
 
 	 	private String lastName;
 	 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	 	private int birthday;
+	 	private Date birthday;
 
 	 	@Email(message = "EMAIL FORMATS PLEASE")
 		@NotBlank(message = "Please Enter A Valid Email")
