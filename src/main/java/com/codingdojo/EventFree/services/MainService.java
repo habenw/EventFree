@@ -29,9 +29,6 @@ public class MainService {
 	public List<User> findOtherEvents(User user) {
 		return eventRepository.findByAttendeesNotContaining(user);
 	}
-	public List<Event> findFriendsEvents(Event creator) {
-		return eventRepository.findByCreatorContaining(creator);
-	}
     public User registerUser(User user) {
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashed);
@@ -67,6 +64,9 @@ public class MainService {
                return false;
            }
        }
+   }
+   public User updateUser(User user) {
+	   return userRepository.save(user);
    }
    public Event createEvent(Event event) {
    	return eventRepository.save(event);
