@@ -11,23 +11,23 @@
 <title>GREAT IDEAS ARE UPDATED HERE</title>
 </head>
 <body>
-	<h1>GREAT IDEAS ARE UPDATED HERE!!!</h1>
-	<a href="/idea/info/${idea.id }" class="btn btn-primary">Cancel</a>
+	<h1>Edit This Event:</h1>
+	<a href="/events/${event.id}" class="btn btn-primary">Cancel</a>
 	<br>
 	<br>
-	<form:form action="/idea/update/${idea.id }" method="post" modelAttribute="idea">
+	<form:form action="/events/${event.id}/edit" method="post" modelAttribute="event">
 		<input type="hidden" name="_method" value="put">
 		<p>
-			Idea Name:
-			<form:input path="ideaName" />
-			<form:errors path="ideaName" />
+			New Event Title:
+			<form:input path="name" />
+			<form:errors path="name" />
 		</p>
 		<p>
-			Idea Details:
-			<form:input path="ideaDetail" />
-			<form:errors path="ideaDetail" />
+			Event Details:
+			<form:input path="description" />
+			<form:errors path="description" />
 		</p>
-		<form:input type="hidden" path="user" value="${idea.user.id }" />
+		<form:input type="hidden" path="creator" value="${event.creator.id}" />
 		<br>
 		<button type="submit" class="btn btn-success">Submit Changes</button>
 	</form:form>
@@ -37,6 +37,6 @@
 	<br>
 	<br>
 	<br>
-	<a href="/idea/delete/${idea.id}" class="btn btn-danger">DELETE THIS IDEA</a>
+	<a href="/delete/${event.id}" class="btn btn-danger">DELETE THIS IDEA</a>
 </body>
 </html>

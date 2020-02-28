@@ -13,7 +13,7 @@
 <body>
 	<h1>All about this event!</h1>
 	<br>
-	<a href="/events" class="btn btn-primary">Back to Your Events Page</a>
+	<a href="/events/new" class="btn btn-primary">Back to Your Events Page</a>
 	<br>
 	<br>
 	<br>
@@ -23,8 +23,8 @@
 		    <h3 class="card-title"><c:out value="${event.name }"/></h3>
 		    <p class="card-text"><c:out value="${event.description }"/></p>
 		    <p class="card-text"><c:out value="${event.location }"/></p>
-		    <p class="card-text"><c:out value="Created By: ${event.user.creator}"/></p>
-		    <a href="/event/${event.id}/edit" class="card-link">Update</a>
+		    <p class="card-text"><c:out value="Created By: ${event.creator.firstName}"/></p>
+		    <a href="/events/${event.id}/edit" class="card-link">Update</a>
 		  </div>
 		</div>
 	</div>

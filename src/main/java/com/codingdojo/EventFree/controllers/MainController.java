@@ -1,7 +1,5 @@
 package com.codingdojo.EventFree.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -221,19 +218,14 @@ public class MainController {
 		if(session.getAttribute("user_id")==null) {
 			return "redirect:/login";
 		} else {
-			Long userId = (Long) session.getAttribute("user_id");
-			User user = mainServ.findUserById(userId);
+//			Long userId = (Long) session.getAttribute("user_id");
+//			User user = mainServ.findUserById(userId);
 			Event event = mainServ.findEvent(id);
 			User creator = mainServ.findEventCreator(id);
-			model.addAttribute("user", user);
+//			model.addAttribute("user", user);
 			model.addAttribute("event", event);
 			model.addAttribute("creator", creator);
-			if(user.getId()!=creator.getId()) {
-				model.addAttribute("invalid", "You may not edit this event.");
-				return "redirect:/events/"+event.getId();
-			} else {
-				return "edit.jsp";
-			}
+			return "edit.jsp";
 		}
 	}
 	@PutMapping("/events/{id}/edit")
