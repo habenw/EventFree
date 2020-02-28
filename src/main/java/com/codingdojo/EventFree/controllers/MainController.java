@@ -53,7 +53,7 @@ public class MainController {
 	public String login(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
 		if(!mainServ.authenticateUser(email, password)) {
 			model.addAttribute("invalid", "Your credentials are not valid.");
-			return "index.jsp";
+			return "loginReg.jsp";
 		} else {
 			User thisUser = mainServ.findByEmail(email);
 			session.setAttribute("user_id", thisUser.getId());
@@ -80,10 +80,19 @@ public class MainController {
 		} else {
 			Long userId = (Long) session.getAttribute("user_id");
 			User user = mainServ.findUserById(userId);
-			List<User> friends = user.getFriends();
 			model.addAttribute("user", user);
-			model.addAttribute("friends", friends);
 			return "friends.jsp";
+		}
+	}
+	@GetMapping("/friendsevents")
+	public String friendsEvents(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			model.addAttribute("user", user);
+			return "friendsEvents.jsp";
 		}
 	}
 	@GetMapping("/otherevents")
