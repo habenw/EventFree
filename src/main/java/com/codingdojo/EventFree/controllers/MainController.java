@@ -31,11 +31,15 @@ public class MainController {
 		this.userValid = userValid;
 	}
 	@GetMapping("/")
-	public String index(@ModelAttribute("user") User user) {
+	public String loginReg(@ModelAttribute("user") User user) {
 		return "loginReg.jsp";
 	}
+	@GetMapping("/register")
+	public String reg(@ModelAttribute("user") User user) {
+		return "redirect:/";
+	}
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+	public String reg(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		userValid.validate(user, result);
 		if(result.hasErrors()) {
 			return "loginReg.jsp";
@@ -46,33 +50,45 @@ public class MainController {
 		}
 	}
 	@GetMapping("/login")
-	public String gohome() {
+	public String login() {
 		return "redirect:/";
 	}
 	@PostMapping("/login")
-	public String login(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
-		if(!mainServ.authenticateUser(email, password)) {
+	public String processLogin(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+		if(!mainServ.authenticateUser(email,password)) {
 			model.addAttribute("invalid", "Your credentials are not valid.");
-			return "index.jsp";
-		} else {
-			User thisUser = mainServ.findByEmail(email);
-			session.setAttribute("user_id", thisUser.getId());
-			return "redirect:/events";
+			return "loginReg.jsp";
 		}
+		User thisUser = mainServ.findByEmail(email);
+		session.setAttribute("user_id", thisUser.getId());
+		return "redirect:/events/";
 	}
 	@GetMapping("/events")
-	public String eventsDash(Model model, HttpSession session) {
-		if(session.getAttribute("user_id")==null) {
+	public String dashboard(Model model, HttpSession session) {
+		if(session.getAttribute("user_id") == null) {
 			return "redirect:/login";
-		} else {
-			Long userId = (Long) session.getAttribute("user_id");
-			User user = mainServ.findUserById(userId);
-			List<Event> events = user.getCreated_events();
-			model.addAttribute("user", user);
-			model.addAttribute("allMyEvents", events);
-			return "events.jsp";
 		}
+		List<Event> events = mainServ.allEvents();
+		model.addAttribute("allEvents", events);
+		List<User> users = mainServ.allUsers();
+		model.addAttribute("allUsers", users);
+		User user = mainServ.findUserById((Long) session.getAttribute("user_id") );
+		model.addAttribute("user", user);
+		return "dashboard.jsp";
 	}
+//	@GetMapping("/events")
+//	public String eventsDash(Model model, HttpSession session) {
+//		if(session.getAttribute("user_id")==null) {
+//			return "redirect:/login";
+//		} else {
+//			Long userId = (Long) session.getAttribute("user_id");
+//			User user = mainServ.findUserById(userId);
+//			List<Event> events = user.getCreated_events();
+//			model.addAttribute("user", user);
+//			model.addAttribute("allMyEvents", events);
+//			return "dashboard.jsp";
+//		}
+//	}
 	@GetMapping("/friends")
 	public String friends(Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
@@ -132,20 +148,20 @@ public class MainController {
 		return "redirect:/events/{id}";
 	}
 	@GetMapping("/events/new")
-	public String newEvent(@ModelAttribute("event") Event event, Model model, HttpSession session) {
+	public String newEvent(@ModelAttribute("new") Event event, Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
 			return "redirect:/login";
 		} else {
 			Long userId = (Long) session.getAttribute("user_id");
 			User user = mainServ.findUserById(userId);
 			model.addAttribute("user", user);
-			return "new.jsp";
+			return "eventNew.jsp";
 		}
 	}
 	@PostMapping("/events/new")
-	public String makeNewEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpSession session) { 
+	public String makeNewEvent(@Valid @ModelAttribute("new") Event event, BindingResult result, HttpSession session) { 
 		if(result.hasErrors()) {
-			return "redirect:/events/new";
+			return "eventNew.jsp";
 		} else {
 			mainServ.createEvent(event);
 			return "redirect:/events/"+event.getId();

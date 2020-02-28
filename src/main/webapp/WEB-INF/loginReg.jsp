@@ -20,9 +20,12 @@
 			<h3>Registration</h3>
 			<form:form action="/register" method="post" modelAttribute="user">
 				<p>
-					Your Name:
+					First Name:
 					<form:input path="firstName" />
 					<form:errors path="firstName" />
+				</p>
+				<p>
+					Last Name:
 					<form:input path="lastName" />
 					<form:errors path="lastName" />
 				</p>
