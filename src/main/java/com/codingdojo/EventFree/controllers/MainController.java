@@ -1,7 +1,5 @@
 package com.codingdojo.EventFree.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -103,6 +100,15 @@ public class MainController {
 			return "profile.jsp";
 		}
 	}
+	@PutMapping("/update_profile")
+	public String updateProfile(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "profile.jsp";
+		} else {
+			mainServ.updateUser(user);
+			return "redirect:/profile";
+		}
+	}
 	@GetMapping("/editprofile")
 	public String editProfile(Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
@@ -112,15 +118,6 @@ public class MainController {
 			User user = mainServ.findUserById(userId);
 			model.addAttribute(user);
 			return "editProfile.jsp";
-		}
-	}
-	@PutMapping("/editprofile")
-	public String updateProfile(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
-		if(result.hasErrors()) {
-			return "profile.jsp";
-		} else {
-			mainServ.updateUser(user);
-			return "redirect:/profile";
 		}
 	}
 	@GetMapping("/friends")
@@ -214,7 +211,7 @@ public class MainController {
 	public String showEvent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
 		Event thisEvent = mainServ.findEvent(id);
 		model.addAttribute("event", thisEvent);
-		return "show.jsp";
+		return "eventInfo.jsp";
 	}
 	@GetMapping("/events/{id}/edit")
 	public String editevent(@PathVariable("id") Long id, Model model, HttpSession session) {
@@ -232,14 +229,14 @@ public class MainController {
 				model.addAttribute("invalid", "You may not edit this event.");
 				return "redirect:/events/"+event.getId();
 			} else {
-				return "edit.jsp";
+				return "eventUpdate.jsp";
 			}
 		}
 	}
 	@PutMapping("/events/{id}/edit")
 	public String updateEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			return "edit.jsp";
+			return "eventUpdate.jsp";
 		} else {
 			mainServ.updateEvent(event);
 			return "redirect:/events/"+event.getId();

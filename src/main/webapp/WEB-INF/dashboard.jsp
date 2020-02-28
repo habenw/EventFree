@@ -101,7 +101,7 @@
 					<c:forEach items="${allUsers}" var="user">
 						<tr>
 							<td>
-								<a href="/user/info/${user.id}"><c:out value="${user.lastName}, ${user.firstName}"/></a>
+								<a href="/profile"><c:out value="${user.lastName}, ${user.firstName}"/></a>
 							</td>
 						</tr>
 					</c:forEach>

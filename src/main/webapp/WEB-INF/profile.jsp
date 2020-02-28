@@ -13,13 +13,14 @@
 <body>
 	<div id="container">
 		<div id="head">
-			<h1>Profile</h1>
+			<h1>My Profile</h1>
 		</div>
 		<div id="main">
-			
+			<p>My name is <c:out value="${user.firstName} ${user.lastName}"/>.</p>
+			<p>My email address is <c:out value="${user.email}"/>.</p>
 		</div>
 		<div id="foot">
-			
+			<a href="/editprofile">Edit My Profile</a>  -  <a href="/events">Back to Dashboard</a>
 		</div>
 	</div>
 </body>
