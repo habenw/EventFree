@@ -75,13 +75,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%-- <c:forEach items="${allUsers}" var="user">
+					<c:forEach items="${allUsers}" var="user">
 						<tr>
 							<td>
-								<a href="/user/info/${user.id}"><c:out value="${user.name}"/></a>
+								<a href="/user/info/${user.id}"><c:out value="${user.lastName}, ${user.firstName}"/></a>
 							</td>
 						</tr>
-					</c:forEach> --%>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

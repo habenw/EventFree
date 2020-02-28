@@ -15,8 +15,8 @@
  	<a href="/events" class="btn btn-primary">Cancel</a>
 	<div class="container">
 		<form:form action="/events/new" method="post" modelAttribute="new">
-			<%-- <p>
-				New Idea Title:
+		<%-- 	<p>
+				New Event Title:
 				<form:input path="newEvent" />
 				<form:errors path="newEvent" />
 			</p>
@@ -24,10 +24,10 @@
 				Event Details:
 				<form:input path="description" />
 				<form:errors path="description" />
-			</p>
+			</p> --%>
 			<form:input type="hidden" path="user" value="${user.id }" />
 			<br>
-			<button type="submit" class="btn btn-success">Submit</button> --%>
+			<button type="submit" class="btn btn-success">Submit</button>
 		</form:form>
 	</div>
 </body>

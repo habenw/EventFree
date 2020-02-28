@@ -33,7 +33,7 @@ public class User {
 	 	private String firstName;
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
 	 	private String lastName;
-	 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	 	@DateTimeFormat(pattern="MM-dd-yyyy")
 	 	private int birthday;
 	 	@Email(message = "EMAIL FORMATS PLEASE")
 		@NotBlank(message = "Please Enter A Valid Email")
@@ -108,7 +108,7 @@ public class User {
 		public List<User> getFriends() {
 			return friends;
 		}
-
+		
 		public void setFriends(List<User> friends) {
 			this.friends = friends;
 		}

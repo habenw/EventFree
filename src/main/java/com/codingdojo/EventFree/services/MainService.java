@@ -65,6 +65,9 @@ public class MainService {
            }
        }
    }
+   public User updateUser(User user) {
+	   return userRepository.save(user);
+   }
    public Event createEvent(Event event) {
    	return eventRepository.save(event);
    }
