@@ -1,6 +1,6 @@
 package com.codingdojo.EventFree.models;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -47,12 +49,15 @@ public class Event {
 	 public Event() {
 		    
 		}
-
-	public Event(String name, String location, String description) {
+	public Event(@Size(min = 2, max = 75, message = "Please enter a valid Event Name (min. 2 characters)") String name,
+			@Size(min = 4, max = 75, message = "Please enter a valid Location (min. 4 characters)") String location,
+			@Size(min = 4, max = 75, message = "Please enter a valid Description (min. 4 characters)") String description,
+			User creator) {
 		super();
 		Name = name;
 		Location = location;
 		Description = description;
+		this.creator = creator;
 	}
 
 	public Long getId() {
@@ -118,6 +123,14 @@ public class Event {
 	public void setAttendees(List<User> attendees) {
 		this.attendees = attendees;
 	}
-	 
+	// other getters and setters removed for brevity
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
 	 
 }
