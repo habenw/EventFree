@@ -36,7 +36,6 @@
 					<form:errors path="email" />
 					<form:errors path="duplicate" />
 				</p>
-
 				<p>
 					Password:
 					<form:input type="password" path="password" />
