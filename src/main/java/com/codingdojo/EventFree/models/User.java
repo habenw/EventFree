@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -34,7 +36,7 @@ public class User {
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
 
 	 	private String lastName;
-	 	@DateTimeFormat(pattern="yyyy-MM-dd")
+
 	 	private Date birthday;
 
 	 	@Email(message = "EMAIL FORMATS PLEASE")
@@ -211,5 +213,14 @@ public class User {
 		public void setCreated_events(List<Event> created_events) {
 			this.created_events = created_events;
 		}
+		// other getters and setters removed for brevity
+	    @PrePersist
+	    protected void onCreate(){
+	        this.createdAt = new Date();
+	    }
+	    @PreUpdate
+	    protected void onUpdate(){
+	        this.updatedAt = new Date();
+	    }
 	    
 }
