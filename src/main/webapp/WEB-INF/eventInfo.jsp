@@ -23,7 +23,7 @@
 		    <h3 class="card-title"><c:out value="${event.name }"/></h3>
 		    <p class="card-text"><c:out value="${event.description }"/></p>
 		    <p class="card-text"><c:out value="${event.location }"/></p>
-		    <p class="card-text"><c:out value="Created By: ${event.user.creator}"/></p>
+		    <p class="card-text"><c:out value="Created By: ${event.creator.fristName}"/></p>
 		    <a href="/event/${event.id}/edit" class="card-link">Update</a>
 		  </div>
 		</div>

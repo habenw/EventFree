@@ -207,8 +207,8 @@ public class MainController {
 			return "redirect:/events/"+event.getId();
 		}
 	}
-	@GetMapping("/events/{event.id}")
-	public String showEvent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
+	@GetMapping("/events/{id}")
+	public String showEvent(@PathVariable("id") Long id, Model model, HttpSession session) {
 		Event thisEvent = mainServ.findEvent(id);
 		model.addAttribute("event", thisEvent);
 		return "eventInfo.jsp";
