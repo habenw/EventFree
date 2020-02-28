@@ -149,11 +149,11 @@ public class User {
 		}
 
 		public Date getBirthday() {
-			return Birthday;
+			return birthday;
 		}
 
 		public void setBirthday(Date birthday) {
-			Birthday = birthday;
+			this.birthday = birthday;
 		}
 
 		public String getEmail() {

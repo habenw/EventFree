@@ -76,19 +76,19 @@ public class MainController {
 		model.addAttribute("user", user);
 		return "dashboard.jsp";
 	}
-//	@GetMapping("/events")
-//	public String eventsDash(Model model, HttpSession session) {
-//		if(session.getAttribute("user_id")==null) {
-//			return "redirect:/login";
-//		} else {
-//			Long userId = (Long) session.getAttribute("user_id");
-//			User user = mainServ.findUserById(userId);
-//			List<Event> events = user.getCreated_events();
-//			model.addAttribute("user", user);
-//			model.addAttribute("allMyEvents", events);
-//			return "dashboard.jsp";
-//		}
-//	}
+	@GetMapping("/myEvents")
+	public String eventsDash(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			List<Event> events = user.getCreated_events();
+			model.addAttribute("user", user);
+			model.addAttribute("allMyEvents", events);
+			return "myEvents.jsp";
+		}
+	}
 	@GetMapping("/profile")
 	public String profile(Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
@@ -108,7 +108,7 @@ public class MainController {
 			Long userId = (Long) session.getAttribute("user_id");
 			User user = mainServ.findUserById(userId);
 			model.addAttribute(user);
-			return "editprofile.jsp";
+			return "editProfile.jsp";
 		}
 	}
 	@PutMapping("/editprofile")
@@ -142,19 +142,19 @@ public class MainController {
 			return "friendsEvents.jsp";
 		}
 	}
-	@GetMapping("/otherevents")
-	public String otherEvents(Model model, HttpSession session) {
-		if(session.getAttribute("user_id")==null) {
-			return "redirect:/login";
-		} else {
-			Long userId = (Long) session.getAttribute("user_id");
-			User user = mainServ.findUserById(userId);
-			List<User> events = mainServ.findOtherEvents(user);
-			model.addAttribute("user", user);
-			model.addAttribute("allOtherEvents", events);
-			return "otherevents.jsp";
-		}
-	}
+//	@GetMapping("/otherevents")
+//	public String otherEvents(Model model, HttpSession session) {
+//		if(session.getAttribute("user_id")==null) {
+//			return "redirect:/login";
+//		} else {
+//			Long userId = (Long) session.getAttribute("user_id");
+//			User user = mainServ.findUserById(userId);
+//			List<User> events = mainServ.findOtherEvents(user);
+//			model.addAttribute("user", user);
+//			model.addAttribute("allOtherEvents", events);
+//			return "otherevents.jsp";
+//		}
+//	}
 	@PutMapping("/attend")
 	public String attendEvent(@PathVariable("id") Long userId, @RequestParam("events") Long eventId) {
 		User user = mainServ.findUserById(userId);
