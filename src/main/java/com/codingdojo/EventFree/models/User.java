@@ -107,7 +107,7 @@ public class User {
 		public List<User> getFriends() {
 			return friends;
 		}
-
+		
 		public void setFriends(List<User> friends) {
 			this.friends = friends;
 		}
