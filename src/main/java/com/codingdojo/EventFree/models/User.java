@@ -30,11 +30,12 @@ public class User {
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	    private Long id;
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
-	 	private String FirstName;
+	 	private String firstName;
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
-	 	private String LastName;
+	 	private String lastName;
 	 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	 	private Date Birthday;
+	 	private int birthday;
+
 	 	@Email(message = "EMAIL FORMATS PLEASE")
 		@NotBlank(message = "Please Enter A Valid Email")
 	 	private String email;
@@ -88,9 +89,9 @@ public class User {
 				String lastName, Date birthday, @Size(min = 2, max = 20) String email, String password,
 				boolean duplicate, String passwordConfirmation) {
 			super();
-			FirstName = firstName;
-			LastName = lastName;
-			Birthday = birthday;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.birthday = birthday;
 			this.email = email;
 			this.password = password;
 			this.duplicate = duplicate;
@@ -128,23 +129,23 @@ public class User {
 		public void setId(Long id) {
 			this.id = id;
 		}
+		
 
 		public String getFirstName() {
-			return FirstName;
+			return firstName;
 		}
 
 		public void setFirstName(String firstName) {
-			FirstName = firstName;
+			this.firstName = firstName;
 		}
 
 		public String getLastName() {
-			return LastName;
+			return lastName;
 		}
 
 		public void setLastName(String lastName) {
-			LastName = lastName;
+			this.lastName = lastName;
 		}
-
 		public Date getBirthday() {
 			return Birthday;
 		}
