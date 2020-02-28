@@ -242,6 +242,12 @@ public class MainController {
 			return "redirect:/events/"+event.getId();
 		}
 	}
+	@GetMapping("/events/search")
+	public String searchEvent(@RequestParam(value="search")String search, Model model) {
+		List<Event> results = mainServ.findEventByName(search);
+		model.addAttribute("results", results);
+		return "eventSearch.jsp";
+	}
 	@GetMapping("/delete/{id}")
 	public String destroy(@PathVariable("id") Long id) {
 		mainServ.deleteEvent(id);

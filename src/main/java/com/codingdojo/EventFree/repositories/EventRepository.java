@@ -14,4 +14,6 @@ public interface EventRepository extends CrudRepository<Event,Long>{
 	List<User>findByAttendeesNotContaining(User user);
 	List<User>findEventsByAttendeesNotContaining(User creator);
 	List<Event>findByCreatorContaining(Event creator);
+	List<Event> findByNameIgnoreCaseContaining(String search);
+
 }

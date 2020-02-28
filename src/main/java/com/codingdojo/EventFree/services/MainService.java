@@ -85,6 +85,9 @@ public class MainService {
    	}
    	return null;
    }
+   public List<Event> findEventByName(String search) {
+	   return this.eventRepository.findByNameIgnoreCaseContaining(search);
+   }
    public Event updateEvent(Event event) {
    	if(event!=null) {
    		return eventRepository.save(event);
