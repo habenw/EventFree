@@ -33,7 +33,8 @@ public class User {
 	 	private String FirstName;
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
 	 	private String LastName;
-	 	private int Birthday;
+	 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	 	private Date Birthday;
 	 	@Email(message = "EMAIL FORMATS PLEASE")
 		@NotBlank(message = "Please Enter A Valid Email")
 	 	private String email;
@@ -84,7 +85,7 @@ public class User {
 	    }
 
 		public User(@Size(min = 2, max = 20, message = "FIRST LETTER MUST BE CAPITALIZED!") String firstName,
-				String lastName, int birthday, @Size(min = 2, max = 20) String email, String password,
+				String lastName, Date birthday, @Size(min = 2, max = 20) String email, String password,
 				boolean duplicate, String passwordConfirmation) {
 			super();
 			FirstName = firstName;
@@ -144,11 +145,11 @@ public class User {
 			LastName = lastName;
 		}
 
-		public int getBirthday() {
+		public Date getBirthday() {
 			return Birthday;
 		}
 
-		public void setBirthday(int birthday) {
+		public void setBirthday(Date birthday) {
 			Birthday = birthday;
 		}
 
