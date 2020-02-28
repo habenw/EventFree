@@ -32,9 +32,10 @@ public class User {
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
 	 	private String firstName;
 	 	@Size(min=2,max=20,message="FIRST LETTER MUST BE CAPITALIZED!")
+
 	 	private String lastName;
 	 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	 	private int birthday;
+	 	private Date birthday;
 
 	 	@Email(message = "EMAIL FORMATS PLEASE")
 		@NotBlank(message = "Please Enter A Valid Email")
@@ -146,12 +147,13 @@ public class User {
 		public void setLastName(String lastName) {
 			this.lastName = lastName;
 		}
+
 		public Date getBirthday() {
-			return Birthday;
+			return birthday;
 		}
 
 		public void setBirthday(Date birthday) {
-			Birthday = birthday;
+			this.birthday = birthday;
 		}
 
 		public String getEmail() {

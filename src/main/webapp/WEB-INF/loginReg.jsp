@@ -30,7 +30,7 @@
 					<form:errors path="lastName" />
 				</p>
 				<p>
-					Email
+					Email:
 					<form:input type="email" path="email" />
 					<form:errors path="email" />
 					<form:errors path="duplicate" />
@@ -46,7 +46,7 @@
 					<form:errors path="password" />
 				</p>
 				<p>
-					Password Confirmation.:
+					Password Confirmation:
 					<form:input type="password" path="passwordConfirmation" />
 					<form:errors path="passwordConfirmation" />
 				</p>
