@@ -1,7 +1,5 @@
 package com.codingdojo.EventFree.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -244,6 +241,12 @@ public class MainController {
 			mainServ.updateEvent(event);
 			return "redirect:/events/"+event.getId();
 		}
+	}
+	@GetMapping("/events/search")
+	public String searchEvent(@RequestParam(value="search")String search, Model model) {
+		List<Event> results = mainServ.findEventByName(search);
+		model.addAttribute("results", results);
+		return "eventSearch.jsp";
 	}
 	@GetMapping("/delete/{id}")
 	public String destroy(@PathVariable("id") Long id) {

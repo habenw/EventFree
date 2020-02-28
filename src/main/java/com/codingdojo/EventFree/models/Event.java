@@ -25,11 +25,11 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
 	@Size(min = 2, max = 75, message = "Please enter a valid Event Name (min. 2 characters)")
-	 private String Name;
+	 private String name;
 	@Size(min = 4, max = 75, message = "Please enter a valid Location (min. 4 characters)")
-	 private String Location;
+	 private String location;
 	@Size(min = 4, max = 75, message = "Please enter a valid Description (min. 4 characters)")
-	 private String Description;
+	 private String description;
 	 @Column(updatable=false)
 	 private Date createdAt;
 	 private Date updatedAt;
@@ -54,9 +54,9 @@ public class Event {
 			@Size(min = 4, max = 75, message = "Please enter a valid Description (min. 4 characters)") String description,
 			User creator) {
 		super();
-		Name = name;
-		Location = location;
-		Description = description;
+		this.name = name;
+		this.location = location;
+		this.description = description;
 		this.creator = creator;
 	}
 
@@ -69,29 +69,23 @@ public class Event {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
-
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
-
 	public String getLocation() {
-		return Location;
+		return location;
 	}
-
 	public void setLocation(String location) {
-		Location = location;
+		this.location = location;
 	}
-
 	public String getDescription() {
-		return Description;
+		return description;
 	}
-
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
