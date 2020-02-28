@@ -73,6 +73,37 @@ public class MainController {
 			return "events.jsp";
 		}
 	}
+	@GetMapping("/profile")
+	public String profile(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			model.addAttribute("user", user);
+			return "profile.jsp";
+		}
+	}
+	@GetMapping("/editprofile")
+	public String editProfile(Model model, HttpSession session) {
+		if(session.getAttribute("user_id")==null) {
+			return "redirect:/login";
+		} else {
+			Long userId = (Long) session.getAttribute("user_id");
+			User user = mainServ.findUserById(userId);
+			model.addAttribute(user);
+			return "editprofile.jsp";
+		}
+	}
+	@PutMapping("/editprofile")
+	public String updateProfile(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "profile.jsp";
+		} else {
+			mainServ.updateUser(user);
+			return "redirect:/profile";
+		}
+	}
 	@GetMapping("/friends")
 	public String friends(Model model, HttpSession session) {
 		if(session.getAttribute("user_id")==null) {
