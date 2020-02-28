@@ -35,11 +35,11 @@
 					<form:errors path="email" />
 					<form:errors path="duplicate" />
 				</p>
-				<%-- <p>
+				<p>
 					Birthday:
 					<form:input type="date" path="birthday" />
 					<form:errors path="birthday" />
-				</p> --%>
+				</p>
 				<p>
 					Password:
 					<form:input type="password" path="password" />
