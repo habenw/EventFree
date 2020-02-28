@@ -218,19 +218,14 @@ public class MainController {
 		if(session.getAttribute("user_id")==null) {
 			return "redirect:/login";
 		} else {
-			Long userId = (Long) session.getAttribute("user_id");
-			User user = mainServ.findUserById(userId);
+//			Long userId = (Long) session.getAttribute("user_id");
+//			User user = mainServ.findUserById(userId);
 			Event event = mainServ.findEvent(id);
 			User creator = mainServ.findEventCreator(id);
-			model.addAttribute("user", user);
+//			model.addAttribute("user", user);
 			model.addAttribute("event", event);
 			model.addAttribute("creator", creator);
-			if(user.getId()!=creator.getId()) {
-				model.addAttribute("invalid", "You may not edit this event.");
-				return "redirect:/events/"+event.getId();
-			} else {
-				return "eventUpdate.jsp";
-			}
+      return "eventUpdate.jsp";
 		}
 	}
 	@PutMapping("/events/{id}/edit")
