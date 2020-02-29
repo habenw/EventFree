@@ -43,10 +43,10 @@
 			        <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
 			      </li>
 			    </ul>
-			    <form class="form-inline my-2 my-lg-0">
-			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			      <button class="btn btn-outline-success my-2 my-sm-0" href="/events/search" type="submit">Search</button>
-			    </form>
+			    <form action="/events/search">
+					<input name="search"/>
+					<button type="submit">Search</button>
+				</form>
 			  </div>
 			</nav>
 			
@@ -55,22 +55,23 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Events</th>
-							<th>Created By</th>
-							<th>Date of Event</th>
+							<font size="6">
+							<th><font size="6">Events</font></th>
+							<th><font size="6">Created By</font></th>
+							<th><font size="6">Date of Event</font></th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${allEvents}" var="event">
 						<tr>
 							<td>
-								<a href="/events/${event.id}" style="a:visited"><font color="violet"><c:out value="${event.name}"/></font></a>
+								<a href="/events/${event.id}" style="a:visited"><font size="6" color="violet"><c:out value="${event.name}"/></font></a>
 							</td>
 							<td>
-								<c:out value="${event.creator.firstName} ${event.creator.lastName}"/>
+								<font size="6" color="violet"><c:out value="${event.creator.firstName} ${event.creator.lastName}"/></font>
 							</td>
 							<td>
-								<c:out value="2/30/2098"/>
+								<font size="6" color="violet"><c:out value="2/30/2098"/></font>
 							</td>
 						</tr>
 					</c:forEach>
@@ -99,7 +100,7 @@
 				</tbody>
 			</table>
 		</div>
-	 	<a href="/" class="btn btn-success">Home Page</a>
-	</div> --%>
+	 	<a href="/" class="btn btn-success">Home Page</a> --%>
+	</div>
 </body>
 </html>

@@ -207,11 +207,11 @@ public class MainController {
 			return "redirect:/events/"+event.getId();
 		}
 	}
-	@GetMapping("/events/{event.id}")
-	public String showEvent(@PathVariable("event.id") Long id, Model model, HttpSession session) {
+	@GetMapping("/events/{id}")
+	public String showEvent(@PathVariable("id") Long id, Model model, HttpSession session) {
 		Event thisEvent = mainServ.findEvent(id);
 		model.addAttribute("event", thisEvent);
-		return "eventInfo.jsp";
+		return "show.jsp";
 	}
 	@GetMapping("/events/{id}/edit")
 	public String editevent(@PathVariable("id") Long id, Model model, HttpSession session) {
@@ -225,13 +225,13 @@ public class MainController {
 //			model.addAttribute("user", user);
 			model.addAttribute("event", event);
 			model.addAttribute("creator", creator);
-      return "eventUpdate.jsp";
+      return "edit.jsp";
 		}
 	}
 	@PutMapping("/events/{id}/edit")
 	public String updateEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			return "eventUpdate.jsp";
+			return "edit.jsp";
 		} else {
 			mainServ.updateEvent(event);
 			return "redirect:/events/"+event.getId();
