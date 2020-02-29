@@ -12,7 +12,7 @@
 <title>LOGIN & REGISTRATION</title>
 </head>
 <body>
-	<img src="eventfree2.png" alt="logo"/>
+	
 	<div class="logRegPg">
 		<br>
 		<br>
