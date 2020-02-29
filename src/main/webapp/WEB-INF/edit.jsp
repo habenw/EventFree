@@ -7,10 +7,12 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
 <meta charset="UTF-8">
 <title>GREAT IDEAS ARE UPDATED HERE</title>
 </head>
 <body>
+<div class="updatePg">
 	<h1>Edit This Event:</h1>
 	<a href="/events/${event.id}" class="btn btn-primary">Cancel</a>
 	<br>
@@ -38,5 +40,6 @@
 	<br>
 	<br>
 	<a href="/delete/${event.id}" class="btn btn-danger">DELETE THIS IDEA</a>
+</div>
 </body>
 </html>

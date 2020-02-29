@@ -37,7 +37,7 @@ public class User {
 
 	 	private String lastName;
 
-	 	private Date birthday;
+//	 	private Date birthday;
 
 	 	@Email(message = "EMAIL FORMATS PLEASE")
 		@NotBlank(message = "Please Enter A Valid Email")
@@ -89,12 +89,12 @@ public class User {
 	    }
 
 		public User(@Size(min = 2, max = 20, message = "FIRST LETTER MUST BE CAPITALIZED!") String firstName,
-				String lastName, Date birthday, @Size(min = 2, max = 20) String email, String password,
+				String lastName, @Size(min = 2, max = 20) String email, String password,
 				boolean duplicate, String passwordConfirmation) {
 			super();
 			this.firstName = firstName;
 			this.lastName = lastName;
-			this.birthday = birthday;
+//			this.birthday = birthday;
 			this.email = email;
 			this.password = password;
 			this.duplicate = duplicate;
@@ -149,14 +149,14 @@ public class User {
 		public void setLastName(String lastName) {
 			this.lastName = lastName;
 		}
-
-		public Date getBirthday() {
-			return birthday;
-		}
-
-		public void setBirthday(Date birthday) {
-			this.birthday = birthday;
-		}
+//
+//		public Date getBirthday() {
+//			return birthday;
+//		}
+//
+//		public void setBirthday(Date birthday) {
+//			this.birthday = birthday;
+//		}
 
 		public String getEmail() {
 			return email;

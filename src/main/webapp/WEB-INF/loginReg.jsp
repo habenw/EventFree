@@ -12,56 +12,57 @@
 <title>LOGIN & REGISTRATION</title>
 </head>
 <body>
-	
 	<div class="logRegPg">
 		<br>
 		<br>
+		<div class="loginReg">
+		<marquee loop=".5" direction="left" scrollamount="25" behavior="slide"><img src="/images/eventfree2.png"></marquee>
+	</div>
 		<br>
 		<div class="regContainer">
-			<h3>Registration</h3>
+			<h3><font color="violet">Registration</font></h3>
 			<form:form action="/register" method="post" modelAttribute="user">
 				<p>
-					First Name:
+					<font color="violet">First Name:</font>
 					<form:input path="firstName" />
 					<form:errors path="firstName" />
 				</p>
 				<p>
-					Last Name:
+					<font color="violet">Last Name:</font>
 					<form:input path="lastName" />
 					<form:errors path="lastName" />
 				</p>
 				<p>
-					Email:
+					<font color="violet">Email:</font>
 					<form:input type="email" path="email" />
 					<form:errors path="email" />
 					<form:errors path="duplicate" />
 				</p>
-
 				<p>
-					Password:
+					<font color="violet">Password:</font>
 					<form:input type="password" path="password" />
 					<form:errors path="password" />
 				</p>
 				<p>
-					Password Confirmation:
+					<font color="violet">Password Confirmation:</font>
 					<form:input type="password" path="passwordConfirmation" />
 					<form:errors path="passwordConfirmation" />
 				</p>
-				<button type="submit" class="btn btn-success btn-block">Register</button>
+				<button type="submit" class="btn btn-info btn-block">Register</button>
 			</form:form>
 		</div>
 		<hr>
 		<div class="loginContainer">
-			<h3>Login</h3>
+			<h3><font color="violet">Login</font></h3>
 			<form action="/login" method="post">
 				<p>
-					Email:
+					<font color="violet">Email:</font>
 					<input name="email" />
 				</p>
 				<p>
-					Password:
+					<font color="violet">Password:</font>
 					<input type="password" name="password" />
-					<button type="submit" class="btn btn-success">Login</button>
+					<button type="submit" class="btn btn-info">Login</button>
 				</p>
 				<c:out value="${invalid }" />
 			</form>

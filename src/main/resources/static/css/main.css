@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
 }
-.logRegPg{
+.logRegPg, .newEventPg, .showPg, .updatePg, .eventSearch, .editPro, .profilePg{
 	background-image: linear-gradient(rgb(99, 178, 228),rgb(1, 26, 41));
 	width: 100%;
 	height: 800px;
@@ -10,10 +10,10 @@
 	padding: 0px 0px 0x 0px;
 }
 .dashPage{
-	background-image: linear-gradient(rgb(99, 718, 228),rgb(333, 226, 41));
-	width: 1200px;
-	height: auto;
-	margin: 10px 40px 0px 40px;
+	background-image: linear-gradient(rgb(99, 178, 228),rgb(1, 26, 41));
+	width: auto;
+	height: 970px;
+	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0x 10px;
 }
 .regContainer, .loginContainer{
