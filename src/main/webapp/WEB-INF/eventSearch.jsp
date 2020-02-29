@@ -7,11 +7,12 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
 <meta charset="UTF-8">
 <title>SEARCH RESULTS</title>
 </head>
 <body>
-	<div>
+	<div class="eventSearch">
 		<h1>Your Search Results</h1>
 		<table class="table">
 			<thead>
@@ -24,7 +25,7 @@
 				<c:forEach items="${results}" var="event">
 					<tr>
 						<td>
-							<a href="/events/${event.id}"><c:out value="${event.name}"/></a>
+							<a href="/events/${event.id}"><font color="black"><c:out value="${event.name}"/></a>
 						</td>
 						<td>
 							<c:out value="${event.creator.firstName}"/>

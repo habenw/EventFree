@@ -8,10 +8,12 @@
 <head>
    	   <link rel="stylesheet" href="/css/style.css">
 	   <script type="text/javascript" src="js/app.js"></script>
+<link rel="stylesheet" href="/css/main.css">
 <meta charset="ISO-8859-1">
 <title>Edit Profile</title>
 </head>
 <body>
+<div class="editPro">
 	<div id="container">
 		<div id="head">
 			<h1>Edit Profile</h1>
@@ -31,7 +33,7 @@
 					<form:errors path="email" />
 				</p>
 				<br>
-				<button type="submit" class="btn btn-success">Submit Changes</button>
+				<button type="submit" class="btn btn-info">Submit Changes</button>
 			</form:form>
 		</div>
 		<div id="foot">
@@ -40,5 +42,6 @@
 			</p>
 		</div>
 	</div>
-</body>
+<div>
+</div></body>
 </html>
